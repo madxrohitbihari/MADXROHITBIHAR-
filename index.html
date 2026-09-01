@@ -693,7 +693,7 @@
             </div>
             
             <h2 class="auth-title">DEVICE VERIFICATION</h2>
-            <p class="auth-desc">Please enter your 30-character access key obtained from Get Key to unlock the portal (24 Hours Validity).</p>
+            <p class="auth-desc">Please enter your access key obtained from Get Key to unlock the portal (24 Hours Validity).</p>
             
             <input type="text" id="accessKeyInput" class="key-input" maxlength="30" placeholder="ENTER ACCESS KEY">
             
@@ -830,7 +830,7 @@
                 });
         }
 
-        // Updated Key Verification Logic with Exact 30-Character Check
+        // Updated Key Verification Logic with Exact 30-Character Check & Custom Invalid/Already Used Error Texts
         function verifyUserKey() {
             const userKey = document.getElementById("accessKeyInput").value.trim();
             const msgDiv = document.getElementById("status-msg");
@@ -842,7 +842,7 @@
                 // Check if this key was already used before
                 if (usedKeys.includes(userKey)) {
                     msgDiv.style.color = "#ff4444";
-                    msgDiv.innerText = "⚠️ Already use code! Please GET NEW KEY";
+                    msgDiv.innerText = "invalid code";
                     return;
                 }
 
@@ -858,7 +858,7 @@
                 showToast("Portal Unlocked Successfully!");
             } else {
                 msgDiv.style.color = "#ff4444";
-                msgDiv.innerText = "Access key must be exactly 30 characters!";
+                msgDiv.innerText = "invalid code";
             }
         }
 
@@ -868,10 +868,8 @@
             const currentTime = new Date().getTime();
             
             if (expiryTime && currentTime < expiryTime) {
-                // If verified and within 24 hours, hide auth screen
                 document.getElementById("authScreenWrapper").style.display = "none";
             } else {
-                // Expired or not verified, clear old expiry
                 localStorage.removeItem("appAuthExpiry");
             }
         }
@@ -1073,7 +1071,6 @@
         document.addEventListener("DOMContentLoaded", () => {  
             const splash = document.getElementById("splash-screen");  
               
-            // Splash screen animation timer
             if (!sessionStorage.getItem('splashShown')) {  
                 setTimeout(() => {  
                     splash.classList.add("hide-splash");  
@@ -1083,13 +1080,11 @@
                 splash.style.display = 'none';  
             }  
 
-            // Sequence Control: Show Community Join Popup First on load
             const expiryTime = localStorage.getItem("appAuthExpiry");
             const currentTime = new Date().getTime();
             const isVerified = expiryTime && currentTime < expiryTime;
 
             if (!isVerified) {
-                // If not verified or expired, check if popup was already closed in session
                 if (!sessionStorage.getItem('popupShown')) {
                     setTimeout(() => {  
                         document.getElementById('popupModal').style.display = 'flex';  
@@ -1098,17 +1093,14 @@
                     document.getElementById('authScreenWrapper').style.display = 'flex';
                 }
             } else {
-                // Already verified within 24 hours
                 document.getElementById('authScreenWrapper').style.display = 'none';
             }
         });  
 
-        // Close Community Popup and transition to Device Verification System
         function closePopupAndShowAuth() {  
             document.getElementById('popupModal').style.display = 'none';  
             sessionStorage.setItem('popupShown', 'true');  
 
-            // Check verification status before showing auth screen
             const expiryTime = localStorage.getItem("appAuthExpiry");
             const currentTime = new Date().getTime();
             
@@ -1120,4 +1112,4 @@
         renderApps();  
     </script>  
 </body>  
-</html>
+</html>  
