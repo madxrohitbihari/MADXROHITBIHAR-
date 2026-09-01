@@ -3,31 +3,33 @@
 <head>  
     <meta charset="UTF-8">  
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">  
-    <title>MADXROHITBIHAR | Portal</title>  
+    <title>MADXROHITBIHAR | Educational Portal</title>  
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">  
     <style>  
         :root {  
-            --bg-deep: #05050a;  
-            --bg-card: rgba(13, 15, 26, 0.85);  
-            --border-neon: rgba(0, 242, 254, 0.2);  
-            --border-hover: rgba(0, 242, 254, 0.6);  
+            --bg-deep: #030712;  
+            --bg-card: #0d1424;  
+            --border-glow: rgba(245, 158, 11, 0.25);  
+            --border-hover: #f59e0b;  
             --text-primary: #ffffff;  
             --text-secondary: #94a3b8;  
-            --neon-cyan: #00f2fe;  
-            --neon-blue: #4facfe;  
-            --neon-pink: #ff007f;  
-            --neon-green: #00ff66;  
-            --gradient-cyber: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);  
-            --gradient-btn: linear-gradient(135deg, #00c6ff 0%, #0072ff 100%);  
-            --shadow-neon: 0 0 20px rgba(0, 242, 254, 0.25);  
+            --accent-gold: #f59e0b;  
+            --accent-orange: #fb923c;  
+            --neon-green: #10b981;  
+            --btn-telegram: #0088cc;  
+            --btn-whatsapp: #25d366;  
+            --gradient-btn: linear-gradient(135deg, #ffaa00 0%, #ff6600 100%);
         }  
   
         * {  
             margin: 0;  
             padding: 0;  
             box-sizing: border-box;  
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;  
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;  
             -webkit-tap-highlight-color: transparent;  
+            -webkit-touch-callout: none !important;  
+            -webkit-user-select: none;  
+            user-select: none;  
         }  
   
         html, body {  
@@ -41,8 +43,143 @@
         body {  
             display: flex;  
             justify-content: center;  
-            background: radial-gradient(circle at 50% -20%, #1a1c3a 0%, var(--bg-deep) 70%);  
+            background: #030712;  
         }  
+
+        /* Verification Lock Screen Styling */
+        #authScreenWrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: #030712;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 999999;
+            padding: 20px;
+        }
+
+        .auth-card {
+            background: var(--bg-card);
+            border: 1px solid var(--accent-gold);
+            padding: 30px 22px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 360px;
+            width: 100%;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+        }
+
+        .auth-logo {
+            width: 75px;
+            height: 75px;
+            margin: 0 auto 15px auto;
+            border-radius: 50%;
+            border: 2px solid var(--accent-gold);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(245, 158, 11, 0.1);
+            overflow: hidden;
+            box-shadow: 0 0 15px rgba(245, 158, 11, 0.3);
+        }
+
+        .auth-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .auth-title {
+            color: var(--text-primary);
+            margin-bottom: 10px;
+            font-size: 20px;
+            font-weight: 900;
+            letter-spacing: 1px;
+        }
+
+        .auth-desc {
+            color: var(--text-secondary);
+            font-size: 13px;
+            margin-bottom: 25px;
+            line-height: 1.5;
+            font-weight: 600;
+        }
+
+        .key-input {
+            width: 100%;
+            padding: 14px;
+            border-radius: 12px;
+            border: 1px solid var(--border-glow);
+            background: rgba(255,255,255,0.03);
+            color: #fff;
+            text-align: center;
+            margin-bottom: 15px;
+            outline: none;
+            box-sizing: border-box;
+            font-size: 14px;
+            letter-spacing: 1px;
+            -webkit-user-select: text;
+            user-select: text;
+        }
+
+        .key-input:focus {
+            border-color: var(--accent-gold);
+        }
+
+        .key-input::placeholder {
+            color: #55607a;
+        }
+
+        .btn {
+            padding: 14px;
+            border-radius: 12px;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            width: 100%;
+            margin-bottom: 12px;
+            box-sizing: border-box;
+            font-size: 14px;
+            transition: opacity 0.2s;
+        }
+
+        .btn:active {
+            opacity: 0.85;
+        }
+
+        .btn-get {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-glow);
+            color: var(--text-primary);
+        }
+
+        .btn-verify {
+            background: var(--gradient-btn);
+            color: #000;
+        }
+
+        .auth-telegram-text {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-top: 15px;
+        }
+
+        .auth-telegram-text a {
+            color: var(--accent-gold);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        #status-msg {
+            font-size: 13px;
+            margin-top: 10px;
+            font-weight: bold;
+            min-height: 18px;
+        }
   
         /* Splash Screen */  
         #splash-screen {  
@@ -56,6 +193,7 @@
             flex-direction: column;  
             justify-content: center;  
             align-items: center;  
+            padding: 20px;  
             z-index: 99999;  
             transition: opacity 0.4s ease, visibility 0.4s ease;  
         }  
@@ -65,30 +203,43 @@
             visibility: hidden;  
             pointer-events: none;  
         }  
-  
+
         .splash-avatar img {  
-            width: 130px;  
-            height: 130px;  
+            width: 220px;  
+            height: 220px;  
             border-radius: 50%;  
             object-fit: cover;  
-            border: 2px solid var(--neon-cyan);  
-            box-shadow: 0 0 40px rgba(0, 242, 254, 0.5);  
-            animation: cyber-pulse 1.8s infinite ease-in-out;  
+            border: 4px solid var(--accent-gold);  
+            box-shadow: 0 0 45px rgba(245, 158, 11, 0.5);  
+            margin-bottom: 24px;  
         }  
-  
-        @keyframes cyber-pulse {  
-            0%, 100% { transform: scale(1); box-shadow: 0 0 25px rgba(0, 242, 254, 0.4); }  
-            50% { transform: scale(1.06); box-shadow: 0 0 50px rgba(0, 242, 254, 0.8); }  
+
+        .splash-divider {  
+            width: 60px;  
+            height: 3px;  
+            background: var(--accent-gold);  
+            border-radius: 2px;  
+            margin-bottom: 16px;  
+            box-shadow: 0 0 10px var(--accent-gold);  
         }  
   
         .splash-title {  
-            margin-top: 20px;  
-            font-size: 20px;  
-            font-weight: 800;  
-            background: var(--gradient-cyber);  
-            -webkit-background-clip: text;  
-            -webkit-text-fill-color: transparent;  
-            letter-spacing: 3px;  
+            font-size: 23px;  
+            font-weight: 900;  
+            color: #ffffff;  
+            letter-spacing: 2px;  
+            text-shadow: 0 0 12px rgba(255, 255, 255, 0.3);  
+            text-align: center;  
+            margin-bottom: 8px;  
+        }  
+
+        .splash-subtitle {  
+            font-size: 11.5px;  
+            font-weight: 700;  
+            color: var(--text-secondary);  
+            letter-spacing: 1.5px;  
+            text-transform: uppercase;  
+            text-align: center;  
         }  
   
         /* Main Container */  
@@ -99,34 +250,76 @@
             display: flex;  
             flex-direction: column;  
             position: relative;  
-            padding-bottom: 90px;  
+            padding-bottom: 80px;  
         }  
   
-        /* Header */  
+        /* Header Bar */  
         .brand-header {  
-            text-align: center;  
-            padding: 16px;  
-            font-size: 15px;  
-            font-weight: 800;  
-            letter-spacing: 3px;  
-            background: rgba(5, 5, 10, 0.9);  
-            backdrop-filter: blur(15px);  
-            border-bottom: 1px solid var(--border-neon);  
+            display: flex;  
+            align-items: center;  
+            justify-content: space-between;  
+            padding: 14px 16px;  
+            background: rgba(3, 7, 18, 0.95);  
+            backdrop-filter: blur(10px);  
             position: sticky;  
             top: 0;  
             z-index: 101;  
+            border-bottom: 1px solid rgba(245, 158, 11, 0.15);  
+        }  
+
+        .header-profile {  
+            display: flex;  
+            align-items: center;  
+            gap: 12px;  
+        }  
+
+        .profile-img {  
+            width: 40px;  
+            height: 40px;  
+            border-radius: 50%;  
+            object-fit: cover;  
+            border: 1.5px solid var(--accent-gold);  
+        }  
+
+        .profile-info {  
+            display: flex;  
+            flex-direction: column;  
+        }  
+
+        .profile-title {  
+            font-size: 15px;  
+            font-weight: 900;  
+            color: #ffffff;  
+            letter-spacing: 1px;  
+            text-transform: uppercase;  
+        }  
+
+        .profile-sub {  
+            font-size: 10px;  
+            color: var(--text-secondary);  
+            font-weight: 700;  
+            letter-spacing: 0.8px;  
+            text-transform: uppercase;  
+        }  
+
+        .header-telegram-btn {  
+            background: var(--btn-telegram);  
+            color: #ffffff;  
+            padding: 7px 16px;  
+            border-radius: 20px;  
+            text-decoration: none;  
+            font-size: 12.5px;  
+            font-weight: 700;  
+            display: flex;  
+            align-items: center;  
+            gap: 6px;  
+            cursor: pointer;  
+            box-shadow: 0 4px 12px rgba(0, 136, 204, 0.3);  
         }  
   
-        .brand-header span {  
-            background: var(--gradient-cyber);  
-            -webkit-background-clip: text;  
-            -webkit-text-fill-color: transparent;  
-            text-shadow: 0 0 15px rgba(0, 242, 254, 0.3);  
-        }  
-  
-        /* Search Section */  
+        /* Search Box */  
         .header-search {  
-            padding: 14px 16px 6px 16px;  
+            padding: 12px 14px 8px 14px;  
         }  
   
         .search-box {  
@@ -136,40 +329,41 @@
   
         .search-box input {  
             width: 100%;  
-            padding: 12px 16px 12px 44px;  
-            background: var(--bg-card);  
-            border: 1px solid var(--border-neon);  
-            border-radius: 14px;  
+            padding: 12px 14px 12px 40px;  
+            background: #080e1d;  
+            border: 1px solid rgba(245, 158, 11, 0.2);  
+            border-radius: 12px;  
             color: #fff;  
             font-size: 13.5px;  
             outline: none;  
-            transition: all 0.3s ease;  
+            -webkit-user-select: text;  
+            user-select: text;  
         }  
   
         .search-box input:focus {  
-            border-color: var(--neon-cyan);  
-            box-shadow: var(--shadow-neon);  
+            border-color: var(--accent-gold);  
+            box-shadow: 0 0 10px rgba(245, 158, 11, 0.15);  
         }  
   
         .search-box i {  
             position: absolute;  
-            left: 16px;  
+            left: 14px;  
             top: 50%;  
             transform: translateY(-50%);  
-            color: var(--neon-cyan);  
-            font-size: 15px;  
+            color: var(--accent-gold);  
+            font-size: 14px;  
         }  
   
         /* Section Title */  
         .section-title {  
-            font-size: 13px;  
-            font-weight: 700;  
-            margin: 16px 16px 12px 16px;  
+            font-size: 13.5px;  
+            font-weight: 800;  
+            padding: 12px 16px;  
             display: flex;  
             align-items: center;  
             justify-content: space-between;  
             color: var(--text-primary);  
-            letter-spacing: 1px;  
+            letter-spacing: 0.5px;  
         }  
   
         .title-with-dot {  
@@ -178,25 +372,18 @@
             gap: 8px;  
         }  
   
-        /* Always Glowing Green Dot */  
         .live-dot {  
             width: 8px;  
             height: 8px;  
             background-color: var(--neon-green);  
             border-radius: 50%;  
-            box-shadow: 0 0 8px var(--neon-green), 0 0 12px var(--neon-green);  
-            animation: dot-blink 1.2s infinite ease-in-out;  
+            box-shadow: 0 0 8px var(--neon-green);  
             display: inline-block;  
-        }  
-  
-        @keyframes dot-blink {  
-            0%, 100% { opacity: 1; transform: scale(1); }  
-            50% { opacity: 0.4; transform: scale(0.8); }  
         }  
   
         /* App Cards */  
         .app-list {  
-            padding: 0 16px;  
+            padding: 0 14px;  
             display: flex;  
             flex-direction: column;  
             gap: 10px;  
@@ -204,20 +391,18 @@
   
         .app-card {  
             background: var(--bg-card);  
-            backdrop-filter: blur(12px);  
-            border: 1px solid var(--border-neon);  
-            border-radius: 16px;  
-            padding: 12px 14px;  
+            border: 1px solid var(--border-glow);  
+            border-radius: 14px;  
+            padding: 11px 14px;  
             display: flex;  
             align-items: center;  
             justify-content: space-between;  
-            transition: all 0.25s ease;  
+            transition: all 0.2s ease;  
         }  
   
         .app-card:hover {  
-            border-color: var(--border-hover);  
-            transform: translateY(-2px);  
-            box-shadow: 0 6px 20px rgba(0, 242, 254, 0.12);  
+            border-color: var(--accent-gold);  
+            box-shadow: 0 0 12px rgba(245, 158, 11, 0.15);  
         }  
   
         .app-info {  
@@ -233,9 +418,9 @@
             height: 48px;  
             border-radius: 12px;  
             object-fit: cover;  
-            background: #111;  
-            border: 1px solid rgba(255, 255, 255, 0.08);  
+            background: #111a2e;  
             flex-shrink: 0;  
+            border: 1px solid rgba(245, 158, 11, 0.2);  
         }  
   
         .app-details {  
@@ -246,18 +431,18 @@
         }  
   
         .app-name {  
-            font-size: 13.5px;  
-            font-weight: 700;  
+            font-size: 14px;  
+            font-weight: 800;  
             color: var(--text-primary);  
-            white-space: normal;  
-            word-break: break-word;  
-            line-height: 1.3;  
+            line-height: 1.25;  
         }  
   
         .app-tag {  
             font-size: 11px;  
-            color: var(--text-secondary);  
-            margin-top: 2px;  
+            color: var(--accent-orange);  
+            font-weight: 700;  
+            margin-top: 3px;  
+            letter-spacing: 0.3px;  
         }  
   
         .app-actions {  
@@ -265,59 +450,58 @@
             align-items: center;  
             gap: 8px;  
             flex-shrink: 0;  
-            margin-left: 8px;  
         }  
   
         .fav-btn {  
-            background: rgba(255, 255, 255, 0.04);  
-            border: 1px solid var(--border-neon);  
+            background: rgba(255, 255, 255, 0.03);  
+            border: 1px solid rgba(245, 158, 11, 0.25);  
+            border-radius: 9px;  
             color: var(--text-secondary);  
             width: 34px;  
             height: 34px;  
-            border-radius: 10px;  
             display: flex;  
             align-items: center;  
             justify-content: center;  
             cursor: pointer;  
-            transition: all 0.2s;  
+            font-size: 14px;  
         }  
   
-        .fav-btn:hover, .fav-btn.active {  
-            color: var(--neon-pink);  
-            border-color: rgba(255, 0, 127, 0.4);  
-            background: rgba(255, 0, 127, 0.1);  
+        .fav-btn.active {  
+            color: #ef4444;  
+            border-color: rgba(239, 68, 68, 0.4);  
         }  
   
         .open-btn {  
-            background: rgba(0, 242, 254, 0.1);  
-            border: 1px solid rgba(0, 242, 254, 0.3);  
-            color: var(--neon-cyan);  
-            padding: 8px 16px;  
-            border-radius: 10px;  
+            background: rgba(245, 158, 11, 0.08);  
+            border: 1px solid var(--accent-gold);  
+            color: var(--accent-gold);  
+            padding: 7px 18px;  
+            border-radius: 9px;  
             text-decoration: none;  
-            font-size: 12px;  
-            font-weight: 700;  
+            font-size: 12.5px;  
+            font-weight: 800;  
             transition: all 0.2s;  
+            cursor: pointer;  
+            display: inline-block;  
+            box-shadow: 0 2px 8px rgba(245, 158, 11, 0.15);  
         }  
   
-        .open-btn:hover {  
-            background: var(--gradient-btn);  
-            color: #fff;  
-            border-color: transparent;  
-            box-shadow: var(--shadow-neon);  
+        .open-btn:active {  
+            background: var(--accent-gold);  
+            color: #030712;  
         }  
   
-        /* Bottom Nav */  
+        /* Bottom Navigation Bar */  
         .bottom-nav {  
             position: fixed;  
             bottom: 0;  
             left: 0;  
             width: 100%;  
-            background: rgba(5, 5, 10, 0.95);  
-            backdrop-filter: blur(20px);  
-            border-top: 1px solid var(--border-neon);  
+            background: rgba(3, 7, 18, 0.98);  
+            backdrop-filter: blur(15px);  
+            border-top: 1px solid rgba(245, 158, 11, 0.15);  
             z-index: 1000;  
-            padding: 10px 0;  
+            padding: 9px 0 7px 0;  
         }  
   
         .nav-wrapper {  
@@ -334,91 +518,98 @@
             align-items: center;  
             color: var(--text-secondary);  
             text-decoration: none;  
-            font-size: 10.5px;  
-            font-weight: 600;  
+            font-size: 11px;  
+            font-weight: 700;  
             gap: 4px;  
             cursor: pointer;  
             flex: 1;  
-            transition: all 0.2s;  
         }  
   
-        .nav-item:hover, .nav-item.active {  
-            color: var(--neon-cyan);  
+        .nav-item.active {  
+            color: var(--accent-gold);  
         }  
   
         .nav-item i {  
             font-size: 17px;  
         }  
   
-        /* Modal */  
+        /* Modal Popup */  
         #popupModal {  
             position: fixed;  
             top: 0;  
             left: 0;  
             width: 100vw;  
             height: 100vh;  
-            background: rgba(0, 0, 0, 0.85);  
-            backdrop-filter: blur(10px);  
+            background: rgba(3, 7, 18, 0.88);  
+            backdrop-filter: blur(8px);  
             display: none;  
             justify-content: center;  
             align-items: center;  
-            z-index: 999999;  
+            z-index: 9999999;  
             padding: 20px;  
         }  
   
         .modal-card {  
-            background: #0d0f1a;  
-            border: 1px solid var(--border-neon);  
+            background: #0d1424;  
+            border: 2px solid var(--accent-gold);  
             border-radius: 24px;  
-            padding: 24px 20px;  
+            padding: 32px 22px;  
             width: 100%;  
-            max-width: 340px;  
+            max-width: 350px;  
             text-align: center;  
             position: relative;  
-            box-shadow: 0 20px 50px rgba(0,0,0,0.9);  
+            box-shadow: 0 10px 40px rgba(245, 158, 11, 0.3);  
+            animation: modalPop 0.3s ease-out;  
+        }  
+
+        @keyframes modalPop {  
+            0% { transform: scale(0.85); opacity: 0; }  
+            100% { transform: scale(1); opacity: 1; }  
         }  
   
         .modal-close-corner {  
             position: absolute;  
             top: 14px;  
             right: 14px;  
-            background: rgba(255, 255, 255, 0.06);  
-            border: 1px solid var(--border-neon);  
+            background: rgba(255, 255, 255, 0.08);  
             color: #fff;  
-            width: 30px;  
-            height: 30px;  
+            width: 32px;  
+            height: 32px;  
             border-radius: 50%;  
             display: flex;  
             align-items: center;  
             justify-content: center;  
-            font-size: 12px;  
+            font-size: 13px;  
             cursor: pointer;  
+            border: 1px solid rgba(255, 255, 255, 0.1);  
         }  
   
         .modal-logo {  
-            width: 70px;  
-            height: 70px;  
+            width: 85px;  
+            height: 85px;  
             border-radius: 50%;  
             object-fit: cover;  
-            border: 2px solid var(--neon-cyan);  
-            margin-bottom: 14px;  
-            box-shadow: 0 0 20px rgba(0, 242, 254, 0.4);  
+            border: 3px solid var(--accent-gold);  
+            margin-bottom: 16px;  
+            box-shadow: 0 0 20px rgba(245, 158, 11, 0.5);  
         }  
   
         .modal-title {  
-            font-size: 18px;  
-            font-weight: 800;  
-            margin-bottom: 6px;  
-            background: var(--gradient-cyber);  
-            -webkit-background-clip: text;  
-            -webkit-text-fill-color: transparent;  
+            font-size: 22px;  
+            font-weight: 900;  
+            margin-bottom: 8px;  
+            color: #ffffff;  
+            letter-spacing: 1px;  
+            text-transform: uppercase;  
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.25);  
         }  
   
         .modal-text {  
-            font-size: 12px;  
+            font-size: 12.5px;  
             color: var(--text-secondary);  
             line-height: 1.5;  
-            margin-bottom: 20px;  
+            margin-bottom: 24px;  
+            font-weight: 600;  
         }  
   
         .modal-buttons {  
@@ -432,38 +623,38 @@
             border-radius: 12px;  
             color: white;  
             text-decoration: none;  
-            font-size: 13px;  
-            font-weight: 700;  
+            font-size: 13.5px;  
+            font-weight: 800;  
             display: flex;  
             align-items: center;  
             justify-content: center;  
-            gap: 8px;  
+            gap: 10px;  
             border: none;  
             cursor: pointer;  
-            transition: all 0.2s;  
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);  
         }  
   
-        .btn-telegram { background: linear-gradient(135deg, #0088cc 0%, #00a2ff 100%); }  
-        .btn-whatsapp { background: linear-gradient(135deg, #25d366 0%, #1ebe5d 100%); }  
-        .btn-close-main { background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border-neon); color: var(--text-secondary); }  
+        .btn-telegram { background: var(--btn-telegram); }  
+        .btn-whatsapp { background: var(--btn-whatsapp); }  
+        .btn-close-main { background: rgba(255, 255, 255, 0.08); color: var(--text-primary); border: 1px solid rgba(245, 158, 11, 0.2); }  
   
         /* Toast */  
         #toast {  
             position: fixed;  
-            top: 20px;  
+            top: 15px;  
             left: 50%;  
             transform: translateX(-50%) translateY(-80px);  
-            background: #0d0f1a;  
-            color: #fff;  
-            border: 1px solid var(--neon-cyan);  
-            padding: 10px 20px;  
-            border-radius: 20px;  
+            background: #0d1424;  
+            color: var(--accent-gold);  
+            border: 1px solid var(--accent-gold);  
+            padding: 9px 18px;  
+            border-radius: 16px;  
             font-size: 12px;  
-            font-weight: 600;  
-            z-index: 100000;  
+            font-weight: 800;  
+            z-index: 1000000;  
             opacity: 0;  
             transition: all 0.3s ease;  
-            box-shadow: 0 5px 20px rgba(0,0,0,0.5);  
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.25);  
         }  
   
         #toast.show {  
@@ -472,59 +663,98 @@
         }  
   
         .hidden { display: none !important; }  
-        .no-data { text-align: center; color: var(--text-secondary); padding: 30px; font-size: 13px; }  
+        .no-data { text-align: center; color: var(--text-secondary); padding: 25px; font-size: 12.5px; font-weight: 600; }  
     </style>  
 </head>  
-<body>  
+<body oncontextmenu="return false;">  
 
     <div id="toast">Notification</div>  
 
-    <!-- Splash Screen -->  
+    <!-- Popup Modal (Shown First) -->  
+    <div id="popupModal">  
+        <div class="modal-card">  
+            <div class="modal-close-corner" onclick="closePopupAndShowAuth()">✕</div>  
+            <img src="https://i.postimg.cc/767wxWNM/750582767-1017528391240334-3988665459253503214-n.webp" class="modal-logo" alt="Logo">  
+            <h3 class="modal-title">JOIN COMMUNITY</h3>  
+            <p class="modal-text">Get instant access to free batches, test series and exclusive study updates.</p>  
+            <div class="modal-buttons">  
+                <button onclick="openExternal('https://t.me/MADXROHITBIHAR')" class="btn-social btn-telegram"><i class="fa-brands fa-telegram"></i> Telegram Channel</button>  
+                <button onclick="openExternal('https://whatsapp.com/channel/0029Vb6FhReEquiLz1jNH00o')" class="btn-social btn-whatsapp"><i class="fa-brands fa-whatsapp"></i> WhatsApp Channel</button>  
+                <button class="btn-social btn-close-main" onclick="closePopupAndShowAuth()">Continue Portal</button>  
+            </div>  
+        </div>  
+    </div>  
+
+    <!-- Device Verification Lock Screen (Shown After Popup) -->
+    <div id="authScreenWrapper" style="display: none;">
+        <div class="auth-card">
+            <div class="auth-logo">
+                <img src="https://i.postimg.cc/767wxWNM/750582767-1017528391240334-3988665459253503214-n.webp" alt="Logo">
+            </div>
+            
+            <h2 class="auth-title">DEVICE VERIFICATION</h2>
+            <p class="auth-desc">Please enter your access key obtained from Get Key to unlock the portal (24 Hours Validity).</p>
+            
+            <input type="text" id="accessKeyInput" class="key-input" placeholder="ENTER ACCESS KEY">
+            
+            <button class="btn btn-get" onclick="openAroLinks()">
+                <i class="fa-solid fa-key" style="color: var(--accent-gold);"></i> Get Key
+            </button>
+            <button class="btn btn-verify" onclick="verifyUserKey()">
+                <i class="fa-solid fa-lock-open"></i> Verify & Open App
+            </button>
+
+            <div class="auth-telegram-text">
+                Need a key? Join our <a href="https://t.me/+cw7TRotEzcczNThl" target="_blank">Telegram</a>
+            </div>
+
+            <div id="status-msg"></div>
+        </div>
+    </div>
+
+    <!-- Splash Screen with Large Centered Image and Clean Layout -->  
     <div id="splash-screen">  
         <div class="splash-avatar">  
             <img src="https://i.postimg.cc/767wxWNM/750582767-1017528391240334-3988665459253503214-n.webp" alt="Logo">  
         </div>  
+        <div class="splash-divider"></div>  
         <div class="splash-title">MADXROHITBIHAR</div>  
-    </div>  
-
-    <!-- Modal -->  
-    <div id="popupModal">  
-        <div class="modal-card">  
-            <div class="modal-close-corner" onclick="closePopup()">✕</div>  
-            <img src="https://i.postimg.cc/bNL8NbQp/ic-launcher-foreground.png" class="modal-logo" alt="Logo">  
-            <h3 class="modal-title">Join Community</h3>  
-            <p class="modal-text">Get instant access to free batches, test series and study updates.</p>  
-            <div class="modal-buttons">  
-                <a href="https://t.me/MADXROHITBIHAR" target="_blank" class="btn-social btn-telegram"><i class="fa-brands fa-telegram"></i> Telegram Channel</a>  
-                <a href="https://whatsapp.com/channel/0029Vb6FhReEquiLz1jNH00o" target="_blank" class="btn-social btn-whatsapp"><i class="fa-brands fa-whatsapp"></i> WhatsApp Channel</a>  
-                <button class="btn-social btn-close-main" onclick="closePopup()">Continue</button>  
-            </div>  
-        </div>  
+        <div class="splash-subtitle">DEVELOPED BY MADXROHITBIHAR</div>  
     </div>  
 
     <!-- Main App Container -->  
     <div class="app-container">  
 
+        <!-- Header Bar -->  
         <div class="brand-header">  
-            <span>MADXROHITBIHAR</span>  
+            <div class="header-profile">  
+                <img src="https://i.postimg.cc/767wxWNM/750582767-1017528391240334-3988665459253503214-n.webp" alt="Profile" class="profile-img">  
+                <div class="profile-info">  
+                    <span class="profile-title">MADXROHITBIHAR</span>  
+                    <span class="profile-sub">Official Educational Portal</span>  
+                </div>  
+            </div>  
+            <button onclick="openExternal('https://t.me/+cw7TRotEzcczNThl')" class="header-telegram-btn">  
+                <i class="fa-brands fa-telegram"></i> Telegram  
+            </button>  
         </div>  
 
         <div class="header-search">  
             <div class="search-box">  
                 <i class="fa-solid fa-magnifying-glass"></i>  
-                <input type="text" id="searchInput" placeholder="Search apps..." onkeyup="filterApps()">  
+                <input type="text" id="searchInput" placeholder="Search App, platforms..." onkeyup="filterApps()">  
             </div>  
         </div>  
 
         <div id="main-content">  
-            <!-- Home Tab -->  
+            <!-- Active Tab -->  
             <div id="tab-apps">  
                 <div class="section-title">  
                     <div class="title-with-dot">  
                         <span class="live-dot"></span>  
                         <span>All Active App</span>  
                     </div>  
-                    <span id="active-count" style="color: var(--neon-cyan);">0 Available</span>  
+                    <span id="active-count" style="color: var(--accent-gold); font-weight: 800;">0 Available</span>  
                 </div>  
                 <div class="app-list" id="active-apps-list"></div>  
             </div>  
@@ -546,14 +776,14 @@
                 <div class="section-title">  
                     <div class="title-with-dot">  
                         <span class="live-dot"></span>  
-                        <span>All Saved Favorite</span>  
+                        <span>Saved Favorites</span>  
                     </div>  
                 </div>  
                 <div class="app-list" id="favorites-apps-list"></div>  
             </div>  
         </div>  
 
-        <!-- Bottom Navigation -->  
+        <!-- Bottom Navigation Bar -->  
         <div class="bottom-nav">  
             <div class="nav-wrapper">  
                 <div class="nav-item active" id="nav-apps" onclick="switchTab('apps', this)">  
@@ -574,6 +804,78 @@
     </div>  
 
     <script>  
+        // AroLinks Integration for Get Key
+        function openAroLinks() {
+            const apiToken = "828c34db80ec53e94e7174f5f52e0b274a38ab2d";
+            const targetUrl = "https://madxrohit-bihar.github.io/ALL-INSTITUTE-MADXROHITBIHAR/";
+            const apiUrl = `https://arolinks.com/api?api=${apiToken}&url=${encodeURIComponent(targetUrl)}`;
+
+            const msgDiv = document.getElementById("status-msg");
+            msgDiv.style.color = "var(--accent-gold)";
+            msgDiv.innerText = "Generating Link...";
+            
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === "success" && data.shortenedUrl) {
+                        window.location.href = data.shortenedUrl;
+                    } else {
+                        msgDiv.style.color = "#ff4444";
+                        msgDiv.innerText = "Error generating link!";
+                    }
+                })
+                .catch(() => {
+                    msgDiv.style.color = "#ff4444";
+                    msgDiv.innerText = "Network Error!";
+                });
+        }
+
+        // Updated Key Verification Logic with Single-Use Check & 24h Expiry
+        function verifyUserKey() {
+            const userKey = document.getElementById("accessKeyInput").value.trim();
+            const msgDiv = document.getElementById("status-msg");
+            
+            if (userKey.length >= 4) {
+                // Retrieve used keys list from localStorage
+                let usedKeys = JSON.parse(localStorage.getItem("usedAccessKeys")) || [];
+
+                // Check if this key was already used before
+                if (usedKeys.includes(userKey)) {
+                    msgDiv.style.color = "#ff4444";
+                    msgDiv.innerText = "⚠️ Already use code! Please GET NEW KEY";
+                    return;
+                }
+
+                // Mark the key as used
+                usedKeys.push(userKey);
+                localStorage.setItem("usedAccessKeys", JSON.stringify(usedKeys));
+
+                // Set 24 Hours Expiry Session
+                const expiryTime = new Date().getTime() + (24 * 60 * 60 * 1000); 
+                localStorage.setItem("appAuthExpiry", expiryTime);
+                
+                document.getElementById("authScreenWrapper").style.display = "none";
+                showToast("Portal Unlocked Successfully!");
+            } else {
+                msgDiv.style.color = "#ff4444";
+                msgDiv.innerText = "Invalid Access Key!";
+            }
+        }
+
+        // Check verification status on load
+        function checkVerification() {
+            const expiryTime = localStorage.getItem("appAuthExpiry");
+            const currentTime = new Date().getTime();
+            
+            if (expiryTime && currentTime < expiryTime) {
+                // If verified and within 24 hours, hide auth screen
+                document.getElementById("authScreenWrapper").style.display = "none";
+            } else {
+                // Expired or not verified, clear old expiry
+                localStorage.removeItem("appAuthExpiry");
+            }
+        }
+
         const defaultNewImg = "https://i.postimg.cc/8kv2Mtxv/IMG-20260731-232847-281.jpg";  
         const upcomingCommonLink = "https://madxrohitbihar-app.github.io/UPDATE-POUP/";
 
@@ -646,6 +948,10 @@
 
         let favorites = JSON.parse(localStorage.getItem('userFavs')) || [];  
 
+        function openExternal(url) {
+            window.open(url, '_blank');
+        }
+
         function showToast(msg) {  
             const toast = document.getElementById('toast');  
             toast.innerText = msg;  
@@ -660,7 +966,7 @@
             activeContainer.innerHTML = activeApps.map(app => `  
                 <div class="app-card" data-name="${app.name.toLowerCase()}">  
                     <div class="app-info">  
-                        <img src="${app.img}" class="app-icon" alt="${app.name}" onerror="this.src='https://via.placeholder.com/48/111/fff?text=App'">  
+                        <img src="${app.img}" class="app-icon" alt="${app.name}" onerror="this.src='https://via.placeholder.com/48/0d1424/fff?text=App'">  
                         <div class="app-details">  
                             <span class="app-name">${app.name}</span>  
                             <span class="app-tag">Free Server Active</span>  
@@ -670,7 +976,7 @@
                         <button class="fav-btn ${favorites.includes(app.id) ? 'active' : ''}" onclick="toggleFavorite(${app.id})">  
                             <i class="fa-${favorites.includes(app.id) ? 'solid' : 'regular'} fa-heart"></i>  
                         </button>  
-                        <a href="${app.link}" class="open-btn" target="_blank">Open</a>  
+                        <span onclick="openExternal('${app.link}')" class="open-btn">Open</span>  
                     </div>  
                 </div>  
             `).join('');  
@@ -681,7 +987,7 @@
             upcomingContainer.innerHTML = upcomingApps.map(app => `  
                 <div class="app-card" data-name="${app.name.toLowerCase()}">  
                     <div class="app-info">  
-                        <img src="${app.img}" class="app-icon" alt="${app.name}" onerror="this.src='https://via.placeholder.com/48/111/fff?text=App'">  
+                        <img src="${app.img}" class="app-icon" alt="${app.name}" onerror="this.src='https://via.placeholder.com/48/0d1424/fff?text=App'">  
                         <div class="app-details">  
                             <span class="app-name">${app.name}</span>  
                             <span class="app-tag">Coming Soon</span>  
@@ -691,7 +997,7 @@
                         <button class="fav-btn ${favorites.includes(app.id) ? 'active' : ''}" onclick="toggleFavorite(${app.id})">  
                             <i class="fa-${favorites.includes(app.id) ? 'solid' : 'regular'} fa-heart"></i>  
                         </button>  
-                        <a href="${app.link}" class="open-btn" target="_blank">Open</a>  
+                        <span onclick="openExternal('${app.link}')" class="open-btn">Open</span>  
                     </div>  
                 </div>  
             `).join('');  
@@ -723,7 +1029,7 @@
             favContainer.innerHTML = favApps.map(app => `  
                 <div class="app-card">  
                     <div class="app-info">  
-                        <img src="${app.img}" class="app-icon" alt="${app.name}" onerror="this.src='https://via.placeholder.com/48/111/fff?text=App'">  
+                        <img src="${app.img}" class="app-icon" alt="${app.name}" onerror="this.src='https://via.placeholder.com/48/0d1424/fff?text=App'">  
                         <div class="app-details">  
                             <span class="app-name">${app.name}</span>  
                             <span class="app-tag">Saved Item</span>  
@@ -733,7 +1039,7 @@
                         <button class="fav-btn active" onclick="toggleFavorite(${app.id})">  
                             <i class="fa-solid fa-heart"></i>  
                         </button>  
-                        <a href="${app.link}" class="open-btn" target="_blank">Open</a>  
+                        <span onclick="openExternal('${app.link}')" class="open-btn">Open</span>  
                     </div>  
                 </div>  
             `).join('');  
@@ -759,28 +1065,56 @@
             });  
         }  
 
+        document.addEventListener("contextmenu", (e) => {
+            e.preventDefault();
+            return false;
+        });
+
         document.addEventListener("DOMContentLoaded", () => {  
             const splash = document.getElementById("splash-screen");  
               
+            // Splash screen animation timer
             if (!sessionStorage.getItem('splashShown')) {  
                 setTimeout(() => {  
                     splash.classList.add("hide-splash");  
                     sessionStorage.setItem('splashShown', 'true');  
-                }, 1200);  
+                }, 1600);  
             } else {  
                 splash.style.display = 'none';  
             }  
 
-            if (!sessionStorage.getItem('popupShown')) {  
-                setTimeout(() => {  
-                    document.getElementById('popupModal').style.display = 'flex';  
-                }, 2000);  
-            }  
+            // Sequence Control: Show Community Join Popup First on load
+            const expiryTime = localStorage.getItem("appAuthExpiry");
+            const currentTime = new Date().getTime();
+            const isVerified = expiryTime && currentTime < expiryTime;
+
+            if (!isVerified) {
+                // If not verified or expired, check if popup was already closed in session
+                if (!sessionStorage.getItem('popupShown')) {
+                    setTimeout(() => {  
+                        document.getElementById('popupModal').style.display = 'flex';  
+                    }, 500);  
+                } else {
+                    document.getElementById('authScreenWrapper').style.display = 'flex';
+                }
+            } else {
+                // Already verified within 24 hours
+                document.getElementById('authScreenWrapper').style.display = 'none';
+            }
         });  
 
-        function closePopup() {  
+        // Close Community Popup and transition to Device Verification System
+        function closePopupAndShowAuth() {  
             document.getElementById('popupModal').style.display = 'none';  
             sessionStorage.setItem('popupShown', 'true');  
+
+            // Check verification status before showing auth screen
+            const expiryTime = localStorage.getItem("appAuthExpiry");
+            const currentTime = new Date().getTime();
+            
+            if (!expiryTime || currentTime >= expiryTime) {
+                document.getElementById('authScreenWrapper').style.display = 'flex';
+            }
         }  
 
         renderApps();  
