@@ -693,9 +693,9 @@
             </div>
             
             <h2 class="auth-title">DEVICE VERIFICATION</h2>
-            <p class="auth-desc">Please enter your access key obtained from Get Key to unlock the portal (24 Hours Validity).</p>
+            <p class="auth-desc">Please enter your 30-character access key obtained from Get Key to unlock the portal (24 Hours Validity).</p>
             
-            <input type="text" id="accessKeyInput" class="key-input" placeholder="ENTER ACCESS KEY">
+            <input type="text" id="accessKeyInput" class="key-input" maxlength="30" placeholder="ENTER ACCESS KEY">
             
             <button class="btn btn-get" onclick="openAroLinks()">
                 <i class="fa-solid fa-key" style="color: var(--accent-gold);"></i> Get Key
@@ -830,12 +830,12 @@
                 });
         }
 
-        // Updated Key Verification Logic with Single-Use Check & 24h Expiry
+        // Updated Key Verification Logic with Exact 30-Character Check
         function verifyUserKey() {
             const userKey = document.getElementById("accessKeyInput").value.trim();
             const msgDiv = document.getElementById("status-msg");
             
-            if (userKey.length >= 4) {
+            if (userKey.length === 30) {
                 // Retrieve used keys list from localStorage
                 let usedKeys = JSON.parse(localStorage.getItem("usedAccessKeys")) || [];
 
@@ -858,7 +858,7 @@
                 showToast("Portal Unlocked Successfully!");
             } else {
                 msgDiv.style.color = "#ff4444";
-                msgDiv.innerText = "Invalid Access Key!";
+                msgDiv.innerText = "Access key must be exactly 30 characters!";
             }
         }
 
