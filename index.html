@@ -670,7 +670,7 @@
 
     <div id="toast">Notification</div>  
 
-    <!-- Popup Modal (Shown Every Time App Opens) -->  
+    <!-- Popup Modal (Shown Only Once Per App Launch) -->  
     <div id="popupModal">  
         <div class="modal-card">  
             <div class="modal-close-corner" onclick="closePopupAndShowAuth()">✕</div>  
@@ -678,14 +678,14 @@
             <h3 class="modal-title">JOIN COMMUNITY</h3>  
             <p class="modal-text">Get instant access to free batches, test series and exclusive study updates.</p>  
             <div class="modal-buttons">  
-                <button onclick="openExternal('https://t.me/MADXROHITBIHAR')" class="btn-social btn-telegram"><i class="fa-brands fa-telegram"></i> Telegram Channel</button>  
+                <button onclick="openExternal('https://t.me/+cw7TRotEzcczNThl')" class="btn-social btn-telegram"><i class="fa-brands fa-telegram"></i> Telegram Channel</button>  
                 <button onclick="openExternal('https://whatsapp.com/channel/0029Vb6FhReEquiLz1jNH00o')" class="btn-social btn-whatsapp"><i class="fa-brands fa-whatsapp"></i> WhatsApp Channel</button>  
                 <button class="btn-social btn-close-main" onclick="closePopupAndShowAuth()">Continue Portal</button>  
             </div>  
         </div>  
     </div>  
 
-    <!-- Device Verification Lock Screen (Shown After Popup if expired) -->
+    <!-- Device Verification Lock Screen -->
     <div id="authScreenWrapper" style="display: none;">
         <div class="auth-card">
             <div class="auth-logo">
@@ -712,7 +712,7 @@
         </div>
     </div>
 
-    <!-- Splash Screen with Large Centered Image and Clean Layout -->  
+    <!-- Splash Screen -->  
     <div id="splash-screen">  
         <div class="splash-avatar">  
             <img src="https://i.postimg.cc/767wxWNM/750582767-1017528391240334-3988665459253503214-n.webp" alt="Logo">  
@@ -813,6 +813,7 @@
             const msgDiv = document.getElementById("status-msg");
             msgDiv.style.color = "var(--accent-gold)";
             msgDiv.innerText = "Generating Link...";
+            showToast("Generating Access Link...");
             
             fetch(apiUrl)
                 .then(response => response.json())
@@ -822,47 +823,53 @@
                     } else {
                         msgDiv.style.color = "#ff4444";
                         msgDiv.innerText = "Error generating link!";
+                        showToast("Error generating link!");
                     }
                 })
                 .catch(() => {
                     msgDiv.style.color = "#ff4444";
                     msgDiv.innerText = "Network Error!";
+                    showToast("Network Error!");
                 });
         }
 
-        // Key Verification Logic with obfuscated exact character length rule (30 chars)
+        // Key Verification Logic
         function verifyUserKey() {
             const userKey = document.getElementById("accessKeyInput").value.trim();
             const msgDiv = document.getElementById("status-msg");
             
-            // Obfuscated expression validating exact 30 length requirement
             const targetLen = 15 * 2; 
             if (userKey.length !== targetLen) {
                 msgDiv.style.color = "#ff4444";
-                msgDiv.innerText = "⚠️ Invalid code!";
+                msgDiv.innerText = "⚠️ Invalid code! Please enter the right code";
+                showToast("⚠️ Invalid code! Please enter the right code");
                 return;
             }
 
-            // Retrieve used keys list from localStorage
-            let usedKeys = JSON.parse(localStorage.getItem("usedAccessKeys")) || [];
+            let keyRecords = JSON.parse(localStorage.getItem("usedKeyRecords")) || {};
+            const currentTime = new Date().getTime();
 
-            // Check if this key was already used before
-            if (usedKeys.includes(userKey)) {
+            if (keyRecords[userKey] && currentTime < keyRecords[userKey]) {
                 msgDiv.style.color = "#ff4444";
-                msgDiv.innerText = "⚠️ Invalid code! Please GET NEW KEY";
+                msgDiv.innerText = "⚠️ Invalid code! This key has already been used. Please get a new key.";
+                showToast("⚠️ Key already used! Please GET NEW KEY");
                 return;
             }
 
-            // Mark the key as used
-            usedKeys.push(userKey);
-            localStorage.setItem("usedAccessKeys", JSON.stringify(usedKeys));
+            const keyExpiryDuration = 24 * 60 * 60 * 1000;
+            keyRecords[userKey] = currentTime + keyExpiryDuration;
+            localStorage.setItem("usedKeyRecords", JSON.stringify(keyRecords));
 
-            // Set 24 Hours Expiry Session
-            const expiryTime = new Date().getTime() + (24 * 60 * 60 * 1000); 
-            localStorage.setItem("appAuthExpiry", expiryTime);
+            const globalExpiryTime = currentTime + keyExpiryDuration; 
+            localStorage.setItem("appAuthExpiry", globalExpiryTime);
             
-            document.getElementById("authScreenWrapper").style.display = "none";
+            msgDiv.style.color = "var(--neon-green)";
+            msgDiv.innerText = "Portal Unlocked Successfully!";
             showToast("Portal Unlocked Successfully!");
+
+            setTimeout(() => {
+                document.getElementById("authScreenWrapper").style.display = "none";
+            }, 600);
         }
 
         const defaultNewImg = "https://i.postimg.cc/8kv2Mtxv/IMG-20260731-232847-281.jpg";  
@@ -872,7 +879,7 @@
             { id: 1, name: "1. CAREER WILL", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmYE_faasYwfAs0rQKDf4GcuoV7_Ws6ZUqWwmIpuHVSw&s", link: "https://runtkyp.xo.je/" },  
             { id: 2, name: "2. KHAN GLOBAL STUDIES", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuCiwfy76ica73byqKIURXqN2Zi2h2Sdw0VJooGkXsyg&s", link: "https://studyapkmodkgs.vercel.app/course" },  
             { id: 3, name: "3. SELECTION WAY", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRquIqVyakcgsPuAsFkSm34nPLKZ_IY2W0-Rj5sd1-T-g&s=10", link: "https://nexthope.pages.dev/sw/" },  
-            { id: 4, name: "4. ROJGAR WITH ANKIT", img: "https://i.postimg.cc/fTfdSHbT/image-search-1783668281136.png", link: "https://learnbyakp.site/rwa/batch" },  
+            { id: 4, name: "4. ROJGAR WITH ANKIT", img: "https://i.postimg.cc/fTfdSHbT/image-search-1783668281136.png", link: "https://spidyrwa1.vercel.app/:" },  
             { id: 5, name: "5. PHYSICS WALLA", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1plcMrWwVtz1_zK8I6kbPtktbGikeJ55Ukuaad408XQ&s", link: "https://pwthor.live/study/batches" },  
             { id: 6, name: "6. FUTUREKUL", img: "https://i.postimg.cc/CK0zWrN0/image-search-1784218678678.png", link: "https://mtaiirus.site/futurekul/" },  
             { id: 7, name: "7. SACHIN ACADEMY", img: "https://i.postimg.cc/MphZTcLR/image-search-1783742533521.jpg", link: "https://sachinclassex1.vercel.app" },  
@@ -1046,6 +1053,9 @@
 
             document.getElementById(`tab-${tabName}`).classList.remove('hidden');  
             window.scrollTo({ top: 0, behavior: 'smooth' });  
+            
+            // Save current tab state in sessionStorage so it persists on back navigation
+            sessionStorage.setItem('currentActiveTab', tabName);
         }  
 
         function filterApps() {  
@@ -1077,23 +1087,34 @@
             const currentTime = new Date().getTime();
             const isVerified = expiryTime && currentTime < expiryTime;
 
-            // Always show Telegram/WhatsApp Join Community popup every time app/page opens
-            setTimeout(() => {  
-                document.getElementById('popupModal').style.display = 'flex';  
-            }, 500);
+            // Show Popup only once per app session (Won't show again when coming back from external links)
+            if (!sessionStorage.getItem('popupShown')) {
+                setTimeout(() => {  
+                    document.getElementById('popupModal').style.display = 'flex';  
+                }, 500);
+            }
 
             if (isVerified) {
                 document.getElementById('authScreenWrapper').style.display = 'none';
+            }
+
+            // Restore last active tab from sessionStorage if available
+            const savedTab = sessionStorage.getItem('currentActiveTab');
+            if (savedTab) {
+                const targetNav = document.getElementById(`nav-${savedTab}`);
+                if (targetNav) {
+                    switchTab(savedTab, targetNav);
+                }
             }
         });  
 
         function closePopupAndShowAuth() {  
             document.getElementById('popupModal').style.display = 'none';  
+            sessionStorage.setItem('popupShown', 'true'); // Mark popup as shown for this session
 
             const expiryTime = localStorage.getItem("appAuthExpiry");
             const currentTime = new Date().getTime();
             
-            // If verification is expired or not done, show the key verification screen
             if (!expiryTime || currentTime >= expiryTime) {
                 document.getElementById('authScreenWrapper').style.display = 'flex';
             }
