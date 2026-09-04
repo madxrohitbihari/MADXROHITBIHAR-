@@ -833,7 +833,7 @@
                 });
         }
 
-        // Key Verification Logic
+        // High Security Key Verification Logic (Single-Use Key Protection)
         function verifyUserKey() {
             const userKey = document.getElementById("accessKeyInput").value.trim();
             const msgDiv = document.getElementById("status-msg");
@@ -841,25 +841,28 @@
             const targetLen = 15 * 2; 
             if (userKey.length !== targetLen) {
                 msgDiv.style.color = "#ff4444";
-                msgDiv.innerText = "⚠️ Invalid code! Please enter the right code";
-                showToast("⚠️ Invalid code! Please enter the right code");
+                msgDiv.innerText = "⚠️ Invalid code length! Please enter the right code";
+                showToast("⚠️ Invalid code length!");
                 return;
             }
 
-            let keyRecords = JSON.parse(localStorage.getItem("usedKeyRecords")) || {};
+            let usedKeys = JSON.parse(localStorage.getItem("usedKeysRegistry")) || {};
             const currentTime = new Date().getTime();
 
-            if (keyRecords[userKey] && currentTime < keyRecords[userKey]) {
+            // Check if this specific key was already used before
+            if (usedKeys[userKey]) {
                 msgDiv.style.color = "#ff4444";
-                msgDiv.innerText = "⚠️ Invalid code! This key has already been used. Please get a new key.";
-                showToast("⚠️ Key already used! Please GET NEW KEY");
+                msgDiv.innerText = "⚠️ This key has already been used! Please get a new key.";
+                showToast("⚠️ Key already used! Get a new key");
                 return;
             }
 
-            const keyExpiryDuration = 24 * 60 * 60 * 1000;
-            keyRecords[userKey] = currentTime + keyExpiryDuration;
-            localStorage.setItem("usedKeyRecords", JSON.stringify(keyRecords));
+            // Mark this specific key as used permanently (or store with timestamp)
+            usedKeys[userKey] = currentTime;
+            localStorage.setItem("usedKeysRegistry", JSON.stringify(usedKeys));
 
+            // Set global session validity for 24 hours
+            const keyExpiryDuration = 24 * 60 * 60 * 1000;
             const globalExpiryTime = currentTime + keyExpiryDuration; 
             localStorage.setItem("appAuthExpiry", globalExpiryTime);
             
@@ -876,7 +879,7 @@
         const upcomingCommonLink = "https://madxrohitbihar-app.github.io/UPDATE-POUP/";
 
         const activeApps = [  
-            { id: 1, name: "1. CAREER WILL", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmYE_faasYwfAs0rQKDf4GcuoV7_Ws6ZUqWwmIpuHVSw&s", link: "https://runtkyp.xo.je/" },  
+            { id: 1, name: "1. CAREER WILL", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmYE_faasYwfAs0rQKDf4GcuoV7_Ws6ZUqWwmIpuHVSw&s", link: "https://madxrohitbihari.github.io/Cw-test/" },  
             { id: 2, name: "2. KHAN GLOBAL STUDIES", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuCiwfy76ica73byqKIURXqN2Zi2h2Sdw0VJooGkXsyg&s", link: "https://vidyaverse-kgs.vercel.app/" },  
             { id: 3, name: "3. SELECTION WAY", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRquIqVyakcgsPuAsFkSm34nPLKZ_IY2W0-Rj5sd1-T-g&s=10", link: "https://nexthope.pages.dev/sw/" },  
             { id: 4, name: "4. ROJGAR WITH ANKIT", img: "https://i.postimg.cc/fTfdSHbT/image-search-1783668281136.png", link: "https://spidyrwa1.vercel.app/" },  
@@ -1054,7 +1057,6 @@
             document.getElementById(`tab-${tabName}`).classList.remove('hidden');  
             window.scrollTo({ top: 0, behavior: 'smooth' });  
             
-            // Save current tab state in sessionStorage so it persists on back navigation
             sessionStorage.setItem('currentActiveTab', tabName);
         }  
 
@@ -1087,7 +1089,6 @@
             const currentTime = new Date().getTime();
             const isVerified = expiryTime && currentTime < expiryTime;
 
-            // Show Popup only once per app session (Won't show again when coming back from external links)
             if (!sessionStorage.getItem('popupShown')) {
                 setTimeout(() => {  
                     document.getElementById('popupModal').style.display = 'flex';  
@@ -1098,7 +1099,6 @@
                 document.getElementById('authScreenWrapper').style.display = 'none';
             }
 
-            // Restore last active tab from sessionStorage if available
             const savedTab = sessionStorage.getItem('currentActiveTab');
             if (savedTab) {
                 const targetNav = document.getElementById(`nav-${savedTab}`);
@@ -1110,7 +1110,7 @@
 
         function closePopupAndShowAuth() {  
             document.getElementById('popupModal').style.display = 'none';  
-            sessionStorage.setItem('popupShown', 'true'); // Mark popup as shown for this session
+            sessionStorage.setItem('popupShown', 'true'); 
 
             const expiryTime = localStorage.getItem("appAuthExpiry");
             const currentTime = new Date().getTime();
