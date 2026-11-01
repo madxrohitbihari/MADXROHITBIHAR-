@@ -10,7 +10,7 @@
 
 function openAroLinks() {
     const apiToken = "0aa19e644db340e405f3b7654cdc70f70d705966";
-    const targetUrl = "https://madxrohitbihari.github.io/MADX-KEY/";
+    const targetUrl = "https://madxrohitbihari.github.io/New-Getkey/";
     const apiUrl = `https://arolinks.com/api?api=${apiToken}&url=${encodeURIComponent(targetUrl)}`;
 
     const msgDiv = document.getElementById("status-msg");
@@ -41,7 +41,8 @@ function verifyUserKey() {
     const msgDiv = document.getElementById("status-msg");
     
     const targetLen = 33; 
-    if (userKey.length !== targetLen || !userKey.startsWith("MAD") || !userKey.endsWith("APN")) {
+    // Updated prefix to "MAD" and suffix to "AAP"
+    if (userKey.length !== targetLen || !userKey.startsWith("MAD") || !userKey.endsWith("AAP")) {
         msgDiv.style.color = "#ff4444";
         msgDiv.innerText = "⚠ Invalid key format!";
         showToast("⚠️ Invalid key format!");
@@ -174,7 +175,6 @@ function setAppTheme(themeName) {
     setTimeout(() => toggleThemeDrawer(), 250);
 }
 
-// Initialize active state of theme buttons on load
 function initThemeUI() {
     const savedTheme = localStorage.getItem('selectedPortalTheme') || 'gold';
     document.querySelectorAll('.theme-opt-btn').forEach(btn => btn.classList.remove('active'));
