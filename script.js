@@ -96,7 +96,7 @@ const activeApps = [
     { id: 13, name: "15. NEXT TOPPERS", img: "https://i.postimg.cc/PqjZCyfr/image-search-1785225080041.jpg", link: "https://madxrohitbihar-app.github.io/Next-Toppers-pro/" },  
     { id: 101, name: "16. PARMAR Single", img: "https://i.postimg.cc/sxYz6q2p/image-search-1792562519230.webp", link: "https://madxrohitbihar-app.github.io/Parmar-/" },
     { id: 105, name: "17. PARMAR SSC", img: "https://i.postimg.cc/65gXYjC5/image-search-1793367333359.jpg", link: "https://madxrohitbihar-app.github.io/Parmar-Academyweb/" },
-    { id: 106, name: "18. PARMAR ACADEMY", img: "https://i.postimg.cc/65gXYjC5/image-search-1793367333359.jpg", link: "https://madxrohitbihar-app.github.io/Parmar-Academy--BAT/" },
+    { id: 106, name: "18. PARMAR ACADEMY", img: "https://i.postimg.cc/65gXYjC5/image-search-1793367333359.jpg", link: "https://bat.unuverse.workers.dev/app/de693d0f-f0c6-4416-8f81-6465a0f86992" },
     { id: 100, name: "19. PHYSICS WALLAH", img: "https://i.postimg.cc/ZRMVR91P/image-search-1791519463252.webp", link: "https://madxrohitbihar-app.github.io/Physics-pro/" },
     { id: 102, name: "20. PHYSICS PI", img: "https://i.postimg.cc/ZRMVR91P/image-search-1791519463252.webp", link: "http://pi.studyparcham.site" },
     { id: 20, name: "21. RG VIKRAMJEET", img: "https://i.postimg.cc/cLqhCJVD/image-search-1791011678203.png", link: "https://madxrohitbihar-app.github.io/Rg-Vikramjeet/" },
