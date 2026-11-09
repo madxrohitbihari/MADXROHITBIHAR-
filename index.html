@@ -78,47 +78,17 @@
 
     <div id="popupModal">  
         <div class="modal-card">  
-            <div class="modal-close-corner" onclick="closePopupAndShowAuth()">✕</div>  
+            <div class="modal-close-corner" onclick="closePopupModal()">✕</div>  
             <img src="https://i.postimg.cc/hvNGdGg4/Meta-AI-modeduzone-oldstyle-bold-circle-20261028-092014.png" class="modal-logo" alt="Logo">  
             <h3 class="modal-title">JOIN COMMUNITY</h3>  
             <p class="modal-text">Get instant access to free batches, test series and exclusive study updates.</p>  
             <div class="modal-buttons">  
                 <button onclick="openExternal('https://t.me/+cw7TRotEzcczNThl')" class="btn-social btn-telegram"><i class="fa-brands fa-telegram"></i> Telegram Channel</button>  
                 <button onclick="openExternal('https://whatsapp.com/channel/0029Vb6FhReEquiLz1jNH00o')" class="btn-social btn-whatsapp"><i class="fa-brands fa-whatsapp"></i> WhatsApp Channel</button>  
-                <button class="btn-social btn-close-main" onclick="closePopupAndShowAuth()">Continue Portal</button>  
+                <button class="btn-social btn-close-main" onclick="closePopupModal()">Continue Portal</button>  
             </div>  
         </div>  
     </div>  
-
-    <div id="authScreenWrapper" style="display: none;">
-        <div class="auth-card">
-            <div class="auth-logo">
-                <img src="https://i.postimg.cc/hvNGdGg4/Meta-AI-modeduzone-oldstyle-bold-circle-20261028-092014.png" alt="Logo">
-            </div>
-            
-            <h2 class="auth-title">DEVICE VERIFICATION</h2>
-            <p class="auth-desc">Please enter your access key obtained from Get Key to unlock the portal (24 Hours Validity).</p>
-            
-            <input type="text" id="accessKeyInput" class="key-input" maxlength="35" placeholder="ENTER ACCESS KEY">
-            
-            <button class="btn btn-get" onclick="openAroLinks()">
-                <i class="fa-solid fa-key" style="color: var(--accent-gold);"></i> Get Key
-            </button>
-            <button class="btn btn-verify" onclick="verifyUserKey()">
-                <i class="fa-solid fa-lock-open"></i> Verify & Open App
-            </button>
-            
-            <button class="btn btn-youtube-tutorial" onclick="openExternal('https://youtu.be/qN80pm0tJjk')">
-                <i class="fa-brands fa-youtube"></i> Watch Tutorial On YouTube
-            </button>
-
-            <div class="auth-telegram-text">
-                Need a key? Join our <a href="https://t.me/+cw7TRotEzcczNThl" target="_blank">Telegram</a>
-            </div>
-
-            <div id="status-msg"></div>
-        </div>
-    </div>
 
     <div id="splash-screen">  
         <div class="splash-avatar">  
@@ -225,4 +195,3 @@
     <script src="script.js"></script>
 </body>  
 </html>
-    
