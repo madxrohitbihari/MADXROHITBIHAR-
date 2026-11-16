@@ -2,48 +2,88 @@
 <html lang="en">  
 <head>  
     <meta charset="UTF-8">  
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">  
-    <title>ModEduZone | Educational Portal</title>  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">  
+    <title>ModEduZone | Portal</title>  
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">  
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>  
 <body oncontextmenu="return false;">  
 
+    <div class="bg-glow-orb-1"></div>
+    <div class="bg-glow-orb-2"></div>
     <div id="toast">Notification</div>  
+    <div class="page-watermark-overlay" id="watermarkLayer"></div>
 
-    <!-- Safe Background Watermark Overlay -->
-    <div class="page-watermark-overlay"></div>
+    <!-- Device Verification Screen Wrapper -->
+    <div id="authScreenWrapper" style="display: none;">
+        <div class="auth-card">
+            <div class="auth-logo">
+                <img src="https://i.postimg.cc/hvNGdGg4/Meta-AI-modeduzone-oldstyle-bold-circle-20261028-092014.png" alt="Logo">
+            </div>
+            
+            <h2 class="auth-title">DEVICE VERIFICATION</h2>
+            <p class="auth-desc">Please enter your access key obtained from Get Key to unlock the portal (24 Hours Validity).</p>
+            
+            <input type="text" id="accessKeyInput" class="key-input" maxlength="35" placeholder="ENTER ACCESS KEY">
+            
+            <button class="btn btn-get" onclick="openAroLinks()">
+                <i class="fa-solid fa-key" style="color: var(--accent-gold);"></i> Get Key
+            </button>
+            <button class="btn btn-verify" onclick="verifyUserKey()">
+                <i class="fa-solid fa-lock-open"></i> Verify & Open App
+            </button>
+            
+            <button class="btn btn-youtube-tutorial" onclick="openExternal('https://youtu.be/qN80pm0tJjk')">
+                <i class="fa-brands fa-youtube"></i> Watch Tutorial On YouTube
+            </button>
 
-    <!-- Theme Selection Drawer Modal -->
+            <div class="auth-telegram-text">
+                Need a key? Join our <a href="https://t.me/+cw7TRotEzcczNThl" target="_blank">Telegram</a>
+            </div>
+
+            <div id="status-msg"></div>
+        </div>
+    </div>
+
+    <!-- Server Selector Modal -->
+    <div id="serverModal" class="server-modal" onclick="closeServerModalOnOuter(event)">
+        <div class="server-card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                <h3 id="modalAppTitle" style="color:var(--accent-cyan); font-size:15px;">Select Server</h3>
+                <span onclick="closeServerModal()" style="cursor:pointer; font-size:15px; color:#fff;">✕</span>
+            </div>
+            <p style="font-size:11px; color:var(--text-secondary); margin-bottom:8px;">Apna pasandida server chun kar open karein:</p>
+            <div class="server-options-list" id="serverOptionsList"></div>
+        </div>
+    </div>
+
+    <!-- Theme Drawer Modal -->
     <div id="themeDrawerModal" class="theme-drawer-modal" onclick="closeThemeDrawerOnOuter(event)">
         <div class="theme-drawer-card">
-            <div class="theme-drawer-header">
-                <h3><i class="fa-solid fa-palette" style="color:var(--accent-gold);"></i> Select Theme Color</h3>
-                <span class="theme-close-btn" onclick="toggleThemeDrawer()">✕</span>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+                <h3 style="font-size:15px;"><i class="fa-solid fa-palette" style="color:var(--accent-cyan);"></i> Select Theme Color</h3>
+                <span onclick="toggleThemeDrawer()" style="cursor:pointer; font-size:15px;">✕</span>
             </div>
-            <div class="theme-options-list">
-                <button class="theme-opt-btn theme-white" onclick="setAppTheme('white')">
-                    <span class="theme-color-dot white-dot"></span>
-                    <div class="theme-text-info">
-                        <strong>White Theme</strong>
-                        <small>Clean & Bright Light Mode</small>
-                    </div>
+            <div style="display:flex; flex-direction:column; gap:10px;">
+                <button class="theme-opt-btn" onclick="setAppTheme('white')" style="display:flex; align-items:center; gap:12px; padding:10px 12px; background:rgba(255,255,255,0.03); border:1px solid var(--border-glow); border-radius:10px; cursor:pointer; color:var(--text-primary); text-align:left;">
+                    <span style="width:20px;height:20px;background:#ffffff;border:2px solid #cbd5e1;border-radius:50%;display:inline-block;flex-shrink:0;"></span>
+                    <div><strong>White Theme</strong><small style="display:block;color:var(--text-secondary);font-size:10.5px;">Clean & Bright Light Mode</small></div>
                 </button>
 
-                <button class="theme-opt-btn theme-black" onclick="setAppTheme('black')">
-                    <span class="theme-color-dot black-dot"></span>
-                    <div class="theme-text-info">
-                        <strong>Black Theme</strong>
-                        <small>Pure AMOLED Dark Night</small>
-                    </div>
+                <button class="theme-opt-btn" onclick="setAppTheme('black')" style="display:flex; align-items:center; gap:12px; padding:10px 12px; background:rgba(255,255,255,0.03); border:1px solid var(--border-glow); border-radius:10px; cursor:pointer; color:var(--text-primary); text-align:left;">
+                    <span style="width:20px;height:20px;background:#000000;border:2px solid #333;border-radius:50%;display:inline-block;flex-shrink:0;"></span>
+                    <div><strong>Black Theme</strong><small style="display:block;color:var(--text-secondary);font-size:10.5px;">Pure AMOLED Dark Night</small></div>
                 </button>
 
-                <button class="theme-opt-btn theme-gold" id="goldThemeBtn" onclick="setAppTheme('gold')">
-                    <span class="theme-color-dot gold-dot"></span>
-                    <div class="theme-text-info">
-                        <strong>Neon Gold Theme</strong>
-                        <small>Default Glassmorphism Theme</small>
-                    </div>
+                <button class="theme-opt-btn" onclick="setAppTheme('gold')" style="display:flex; align-items:center; gap:12px; padding:10px 12px; background:rgba(255,255,255,0.03); border:1px solid var(--border-glow); border-radius:10px; cursor:pointer; color:var(--text-primary); text-align:left;">
+                    <span style="width:20px;height:20px;background:#f59e0b;border:2px solid #fb923c;border-radius:50%;display:inline-block;flex-shrink:0;"></span>
+                    <div><strong>Neon Gold Theme</strong><small style="display:block;color:var(--text-secondary);font-size:10.5px;">Default Glassmorphism Theme</small></div>
+                </button>
+
+                <button class="theme-opt-btn" onclick="setAppTheme('cyan')" style="display:flex; align-items:center; gap:12px; padding:10px 12px; background:rgba(255,255,255,0.03); border:1px solid var(--border-glow); border-radius:10px; cursor:pointer; color:var(--text-primary); text-align:left;">
+                    <span style="width:20px;height:20px;background:#00f3ff;border-radius:50%;display:inline-block;flex-shrink:0;"></span>
+                    <div><strong>Neon Cyberpunk</strong><small style="display:block;color:var(--text-secondary);font-size:10.5px;">Ultra Modern Cyan Glow</small></div>
                 </button>
             </div>
         </div>
@@ -52,14 +92,14 @@
     <!-- Notifications Modal -->
     <div id="notificationModal" class="notification-modal">
         <div class="notif-card">
-            <div class="notif-header">
-                <h3><i class="fa-solid fa-bell"></i> Notifications (3)</h3>
-                <span class="notif-close" onclick="closeNotifications()">✕</span>
+            <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:8px;">
+                <h3 style="color:var(--accent-cyan); font-size:15px;"><i class="fa-solid fa-bell"></i> Notifications (6)</h3>
+                <span onclick="closeNotifications()" style="cursor:pointer; font-size:13px; color:#fff; background:rgba(255,255,255,0.08); width:26px; height:26px; border-radius:50%; display:flex; align-items:center; justify-content:center;">✕</span>
             </div>
             <div class="notif-body">
                 <div class="notif-item">
                     <span class="notif-num">1</span>
-                    <p>Tum ModEduZone App ko open kiye ho to padhai karo time west ho raha hai mere bhai / sister, tumhare exam bhi aane wale hain, tumhare village ke student ki government job lag gayi hai tum kya kar rahe ho..</p>
+                    <p><strong>Focus & Goal Reminder:</strong> Aapne ModEduZone Portal open kiya hai, ab pure focus ke sath apni padhai par dhyan dein. Waqt bahut keemti hai; apne lakshya (Goal) ke prati samarpit rahein aur lagataar mehnat karein, safalta zaroor milegi.</p>
                 </div>
                 <div class="notif-item">
                     <span class="notif-num">2</span>
@@ -67,8 +107,20 @@
                 </div>
                 <div class="notif-item">
                     <span class="notif-num">3</span>
+                    <p><strong>Khan Sir Motivation:</strong> "पढ़ाई पर ध्यान देना, हालात चाहे जैसे भी हों, मेहनत कभी बेकार नहीं जाती। असफलता ही सफलता की पहली सीढ़ी है।"<br><strong>~ Khan Sir (Khan GS Research Centre)</strong></p>
+                </div>
+                <div class="notif-item">
+                    <span class="notif-num">4</span>
+                    <p><strong>Vikas Divyakirti Sir Motivation:</strong> "जिंदगी में धैर्य और निरंतरता (Consistency) सबसे बड़ी ताकत है। जो रोज थोड़ा-थोड़ा पढ़ता है, वो इतिहास रच देता है।"<br><strong>~ Dr. Vikas Divyakirti (Drishti IAS)</strong></p>
+                </div>
+                <div class="notif-item">
+                    <span class="notif-num">5</span>
+                    <p><strong>Roshan Anand Sir Motivation:</strong> "सफलता शॉर्टकट से नहीं, बल्कि अनुशासन और पक्के इरादों से मिलती है। अपने लक्ष्य के प्रति समर्पित रहो।"<br><strong>~ Roshan Anand Sir (Gyan Bindu GS Academy Patna)</strong></p>
+                </div>
+                <div class="notif-item">
+                    <span class="notif-num">6</span>
                     <p>Join Telegram and WhatsApp channel for instant free batches and updates!<br>
-                       <a href="https://t.me/+cw7TRotEzcczNThl" target="_blank" style="color:var(--accent-gold);">Join Telegram</a> | 
+                       <a href="https://t.me/+cw7TRotEzcczNThl" target="_blank" style="color:var(--accent-cyan);">Join Telegram</a> | 
                        <a href="https://whatsapp.com/channel/0029Vb6FhReEquiLz1jNH00o" target="_blank" style="color:var(--neon-green);">Join WhatsApp</a>
                     </p>
                 </div>
@@ -76,16 +128,17 @@
         </div>
     </div>
 
-    <div id="popupModal">  
+    <!-- Community Popup Modal -->
+    <div id="popupModal" style="display: none;">  
         <div class="modal-card">  
-            <div class="modal-close-corner" onclick="closePopupModal()">✕</div>  
+            <div style="position:absolute; top:12px; right:12px; cursor:pointer;" onclick="closePopup()">✕</div>  
             <img src="https://i.postimg.cc/hvNGdGg4/Meta-AI-modeduzone-oldstyle-bold-circle-20261028-092014.png" class="modal-logo" alt="Logo">  
             <h3 class="modal-title">JOIN COMMUNITY</h3>  
-            <p class="modal-text">Get instant access to free batches, test series and exclusive study updates.</p>  
+            <p class="modal-text">Get instant access to free batches and updates.</p>  
             <div class="modal-buttons">  
-                <button onclick="openExternal('https://t.me/+cw7TRotEzcczNThl')" class="btn-social btn-telegram"><i class="fa-brands fa-telegram"></i> Telegram Channel</button>  
-                <button onclick="openExternal('https://whatsapp.com/channel/0029Vb6FhReEquiLz1jNH00o')" class="btn-social btn-whatsapp"><i class="fa-brands fa-whatsapp"></i> WhatsApp Channel</button>  
-                <button class="btn-social btn-close-main" onclick="closePopupModal()">Continue Portal</button>  
+                <button onclick="openExternal('https://t.me/+cw7TRotEzcczNThl')" class="btn-social btn-telegram"><i class="fa-brands fa-telegram"></i> Telegram</button>  
+                <button onclick="openExternal('https://whatsapp.com/channel/0029Vb6FhReEquiLz1jNH00o')" class="btn-social btn-whatsapp"><i class="fa-brands fa-whatsapp"></i> WhatsApp</button>  
+                <button class="btn-social btn-close-main" onclick="closePopup()">Continue</button>  
             </div>  
         </div>  
     </div>  
@@ -100,19 +153,18 @@
     </div>  
 
     <div class="app-container">  
-
         <div class="brand-header">  
             <div class="header-profile">  
                 <img src="https://i.postimg.cc/hvNGdGg4/Meta-AI-modeduzone-oldstyle-bold-circle-20261028-092014.png" alt="Profile" class="profile-img">  
                 <div class="profile-info">  
                     <span class="profile-title">ModEduZone</span>  
-                    <span class="profile-sub">Education Must Be Free For Everyone</span>  
+                    <span class="profile-sub">EDUCATION MUST BE FREE FOR EVERYONE</span>  
                 </div>  
             </div>  
             <div class="header-right-actions">
                 <div class="notification-bell" onclick="openNotifications()">
                     <i class="fa-solid fa-bell"></i>
-                    <span class="bell-badge">3</span>
+                    <span class="bell-badge">6</span>
                 </div>
             </div>  
         </div>  
@@ -130,7 +182,7 @@
 
         <div class="header-search">  
             <div class="search-box">  
-                <i class="fa-solid fa-magnifying-glass"></i>  
+                <i class="fa-solid fa-magnifying-glass search-custom-icon"></i>  
                 <input type="text" id="searchInput" placeholder="Search platforms or exams..." onkeyup="filterApps()">  
             </div>  
         </div>  
@@ -142,9 +194,11 @@
                         <span class="live-dot"></span>  
                         <span>All Active App</span>  
                     </div>  
-                    <span id="active-count" style="color: var(--accent-gold); font-weight: 800;">0 Available</span>  
+                    <span id="active-count" style="color: var(--accent-cyan); font-weight: 800;">28 Available</span>  
                 </div>  
-                <div class="app-list" id="active-apps-list"></div>  
+                <div class="app-list" id="active-apps-list">
+                    <div class="app-skeleton"><i class="fa-solid fa-spinner fa-spin"></i> Initializing Secure Servers...</div>
+                </div>  
             </div>  
 
             <div id="tab-upcoming" class="hidden">  
@@ -189,7 +243,6 @@
                 </div>  
             </div>  
         </div>  
-
     </div>  
 
     <script src="script.js"></script>
