@@ -1,250 +1,138 @@
-<!DOCTYPE html>  
-<html lang="en">  
-<head>  
-    <meta charset="UTF-8">  
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">  
-    <title>ModEduZone | Portal</title>  
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">  
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-</head>  
-<body oncontextmenu="return false;">  
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App Update Available - ModEduZone</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
-    <div class="bg-glow-orb-1"></div>
-    <div class="bg-glow-orb-2"></div>
-    <div id="toast">Notification</div>  
-    <div class="page-watermark-overlay" id="watermarkLayer"></div>
+        body {
+            background-color: #0b0f19;
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
 
-    <!-- Device Verification Screen Wrapper -->
-    <div id="authScreenWrapper" style="display: none;">
-        <div class="auth-card">
-            <div class="auth-logo">
-                <img src="https://i.postimg.cc/hvNGdGg4/Meta-AI-modeduzone-oldstyle-bold-circle-20261028-092014.png" alt="Logo">
-            </div>
-            
-            <h2 class="auth-title">DEVICE VERIFICATION</h2>
-            <p class="auth-desc">Please enter your access key obtained from Get Key to unlock the portal (24 Hours Validity).</p>
-            
-            <input type="text" id="accessKeyInput" class="key-input" maxlength="35" placeholder="ENTER ACCESS KEY">
-            
-            <button class="btn btn-get" onclick="openAroLinks()">
-                <i class="fa-solid fa-key" style="color: var(--accent-gold);"></i> Get Key
-            </button>
-            <button class="btn btn-verify" onclick="verifyUserKey()">
-                <i class="fa-solid fa-lock-open"></i> Verify & Open App
-            </button>
-            
-            <button class="btn btn-youtube-tutorial" onclick="openExternal('https://youtu.be/qN80pm0tJjk')">
-                <i class="fa-brands fa-youtube"></i> Watch Tutorial On YouTube
-            </button>
+        .update-card {
+            background: #111827;
+            border: 2px solid #ff9900;
+            box-shadow: 0 0 25px rgba(255, 153, 0, 0.4);
+            border-radius: 16px;
+            max-width: 420px;
+            width: 100%;
+            padding: 30px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
 
-            <div class="auth-telegram-text">
-                Need a key? Join our <a href="https://t.me/+cw7TRotEzcczNThl" target="_blank">Telegram</a>
-            </div>
+        .badge {
+            background: rgba(255, 153, 0, 0.15);
+            color: #ff9900;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 6px 14px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 15px;
+            border: 1px solid rgba(255, 153, 0, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
 
-            <div id="status-msg"></div>
-        </div>
+        h1 {
+            font-size: 22px;
+            margin-bottom: 12px;
+            color: #ffaa00;
+        }
+
+        p {
+            font-size: 14px;
+            color: #cbd5e1;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .features-list {
+            text-align: left;
+            background: #1f2937;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            border-left: 4px solid #ff9900;
+        }
+
+        .features-list li {
+            font-size: 13px;
+            color: #e2e8f0;
+            margin-bottom: 8px;
+            list-style: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .features-list li:last-child {
+            margin-bottom: 0;
+        }
+
+        .features-list li::before {
+            content: "⚡";
+            margin-right: 8px;
+            color: #ffaa00;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            background: linear-gradient(135deg, #ff9900, #ff5500);
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 15px;
+            padding: 14px;
+            border-radius: 10px;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(255, 153, 0, 0.3);
+            transition: transform 0.2s ease, opacity 0.2s ease;
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+        }
+
+        .watermark {
+            margin-top: 20px;
+            font-size: 11px;
+            color: #64748b;
+            letter-spacing: 0.5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="update-card">
+        <span class="badge">New Update Available</span>
+        <h1>MADXROHITBIHAR APP </h1>
+        <p>Purani app me aa rahi problems ko fix karke naya aur stable version release kar diya gaya hai.</p>
+        
+        <ul class="features-list">
+            <li>30+ New Institutes Added</li>
+            <li>All Bugs & Crash Fixed</li>
+            <li>Smooth & Fast Performance</li>
+        </ul>
+
+        <a href="https://t.me/Study_group_App" class="btn" target="_blank">Join Telegram & Get New App</a>
+
+        <div class="watermark">MADXROHITBIHAR • ModEduZone</div>
     </div>
 
-    <!-- Server Selector Modal -->
-    <div id="serverModal" class="server-modal" onclick="closeServerModalOnOuter(event)">
-        <div class="server-card">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
-                <h3 id="modalAppTitle" style="color:var(--accent-cyan); font-size:15px;">Select Server</h3>
-                <span onclick="closeServerModal()" style="cursor:pointer; font-size:15px; color:#fff;">✕</span>
-            </div>
-            <p style="font-size:11px; color:var(--text-secondary); margin-bottom:8px;">Apna pasandida server chun kar open karein:</p>
-            <div class="server-options-list" id="serverOptionsList"></div>
-        </div>
-    </div>
-
-    <!-- Theme Drawer Modal -->
-    <div id="themeDrawerModal" class="theme-drawer-modal" onclick="closeThemeDrawerOnOuter(event)">
-        <div class="theme-drawer-card">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
-                <h3 style="font-size:15px;"><i class="fa-solid fa-palette" style="color:var(--accent-cyan);"></i> Select Theme Color</h3>
-                <span onclick="toggleThemeDrawer()" style="cursor:pointer; font-size:15px;">✕</span>
-            </div>
-            <div style="display:flex; flex-direction:column; gap:10px;">
-                <button class="theme-opt-btn" onclick="setAppTheme('white')" style="display:flex; align-items:center; gap:12px; padding:10px 12px; background:rgba(255,255,255,0.03); border:1px solid var(--border-glow); border-radius:10px; cursor:pointer; color:var(--text-primary); text-align:left;">
-                    <span style="width:20px;height:20px;background:#ffffff;border:2px solid #cbd5e1;border-radius:50%;display:inline-block;flex-shrink:0;"></span>
-                    <div><strong>White Theme</strong><small style="display:block;color:var(--text-secondary);font-size:10.5px;">Clean & Bright Light Mode</small></div>
-                </button>
-
-                <button class="theme-opt-btn" onclick="setAppTheme('black')" style="display:flex; align-items:center; gap:12px; padding:10px 12px; background:rgba(255,255,255,0.03); border:1px solid var(--border-glow); border-radius:10px; cursor:pointer; color:var(--text-primary); text-align:left;">
-                    <span style="width:20px;height:20px;background:#000000;border:2px solid #333;border-radius:50%;display:inline-block;flex-shrink:0;"></span>
-                    <div><strong>Black Theme</strong><small style="display:block;color:var(--text-secondary);font-size:10.5px;">Pure AMOLED Dark Night</small></div>
-                </button>
-
-                <button class="theme-opt-btn" onclick="setAppTheme('gold')" style="display:flex; align-items:center; gap:12px; padding:10px 12px; background:rgba(255,255,255,0.03); border:1px solid var(--border-glow); border-radius:10px; cursor:pointer; color:var(--text-primary); text-align:left;">
-                    <span style="width:20px;height:20px;background:#f59e0b;border:2px solid #fb923c;border-radius:50%;display:inline-block;flex-shrink:0;"></span>
-                    <div><strong>Neon Gold Theme</strong><small style="display:block;color:var(--text-secondary);font-size:10.5px;">Default Glassmorphism Theme</small></div>
-                </button>
-
-                <button class="theme-opt-btn" onclick="setAppTheme('cyan')" style="display:flex; align-items:center; gap:12px; padding:10px 12px; background:rgba(255,255,255,0.03); border:1px solid var(--border-glow); border-radius:10px; cursor:pointer; color:var(--text-primary); text-align:left;">
-                    <span style="width:20px;height:20px;background:#00f3ff;border-radius:50%;display:inline-block;flex-shrink:0;"></span>
-                    <div><strong>Neon Cyberpunk</strong><small style="display:block;color:var(--text-secondary);font-size:10.5px;">Ultra Modern Cyan Glow</small></div>
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Notifications Modal -->
-    <div id="notificationModal" class="notification-modal">
-        <div class="notif-card">
-            <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:8px;">
-                <h3 style="color:var(--accent-cyan); font-size:15px;"><i class="fa-solid fa-bell"></i> Notifications (6)</h3>
-                <span onclick="closeNotifications()" style="cursor:pointer; font-size:13px; color:#fff; background:rgba(255,255,255,0.08); width:26px; height:26px; border-radius:50%; display:flex; align-items:center; justify-content:center;">✕</span>
-            </div>
-            <div class="notif-body">
-                <div class="notif-item">
-                    <span class="notif-num">1</span>
-                    <p><strong>Focus & Goal Reminder:</strong> Aapne ModEduZone Portal open kiya hai, ab pure focus ke sath apni padhai par dhyan dein. Waqt bahut keemti hai; apne lakshya (Goal) ke prati samarpit rahein aur lagataar mehnat karein, safalta zaroor milegi.</p>
-                </div>
-                <div class="notif-item">
-                    <span class="notif-num">2</span>
-                    <p>"वे मुझे मार सकते हैं, वे मेरे विचारों को मार सकते हैं, वे मेरे शरीर को कुचल सकते हैं, लेकिन वे मेरी सोच को नहीं मार सकते!"<br><strong>~ शहीद-ए-आज़म भगत सिंह</strong></p>
-                </div>
-                <div class="notif-item">
-                    <span class="notif-num">3</span>
-                    <p><strong>Khan Sir Motivation:</strong> "पढ़ाई पर ध्यान देना, हालात चाहे जैसे भी हों, मेहनत कभी बेकार नहीं जाती। असफलता ही सफलता की पहली सीढ़ी है।"<br><strong>~ Khan Sir (Khan GS Research Centre)</strong></p>
-                </div>
-                <div class="notif-item">
-                    <span class="notif-num">4</span>
-                    <p><strong>Vikas Divyakirti Sir Motivation:</strong> "जिंदगी में धैर्य और निरंतरता (Consistency) सबसे बड़ी ताकत है। जो रोज थोड़ा-थोड़ा पढ़ता है, वो इतिहास रच देता है।"<br><strong>~ Dr. Vikas Divyakirti (Drishti IAS)</strong></p>
-                </div>
-                <div class="notif-item">
-                    <span class="notif-num">5</span>
-                    <p><strong>Roshan Anand Sir Motivation:</strong> "सफलता शॉर्टकट से नहीं, बल्कि अनुशासन और पक्के इरादों से मिलती है। अपने लक्ष्य के प्रति समर्पित रहो।"<br><strong>~ Roshan Anand Sir (Gyan Bindu GS Academy Patna)</strong></p>
-                </div>
-                <div class="notif-item">
-                    <span class="notif-num">6</span>
-                    <p>Join Telegram and WhatsApp channel for instant free batches and updates!<br>
-                       <a href="https://t.me/+cw7TRotEzcczNThl" target="_blank" style="color:var(--accent-cyan);">Join Telegram</a> | 
-                       <a href="https://whatsapp.com/channel/0029Vb6FhReEquiLz1jNH00o" target="_blank" style="color:var(--neon-green);">Join WhatsApp</a>
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Community Popup Modal -->
-    <div id="popupModal" style="display: none;">  
-        <div class="modal-card">  
-            <div style="position:absolute; top:12px; right:12px; cursor:pointer;" onclick="closePopup()">✕</div>  
-            <img src="https://i.postimg.cc/hvNGdGg4/Meta-AI-modeduzone-oldstyle-bold-circle-20261028-092014.png" class="modal-logo" alt="Logo">  
-            <h3 class="modal-title">JOIN COMMUNITY</h3>  
-            <p class="modal-text">Get instant access to free batches and updates.</p>  
-            <div class="modal-buttons">  
-                <button onclick="openExternal('https://t.me/+cw7TRotEzcczNThl')" class="btn-social btn-telegram"><i class="fa-brands fa-telegram"></i> Telegram</button>  
-                <button onclick="openExternal('https://whatsapp.com/channel/0029Vb6FhReEquiLz1jNH00o')" class="btn-social btn-whatsapp"><i class="fa-brands fa-whatsapp"></i> WhatsApp</button>  
-                <button class="btn-social btn-close-main" onclick="closePopup()">Continue</button>  
-            </div>  
-        </div>  
-    </div>  
-
-    <div id="splash-screen">  
-        <div class="splash-avatar">  
-            <img src="https://i.postimg.cc/hvNGdGg4/Meta-AI-modeduzone-oldstyle-bold-circle-20261028-092014.png" alt="Logo">  
-        </div>  
-        <div class="splash-divider"></div>  
-        <div class="splash-title">ModEduZone</div>  
-        <div class="splash-subtitle">EDUCATION MUST BE FREE FOR EVERYONE</div>  
-    </div>  
-
-    <div class="app-container">  
-        <div class="brand-header">  
-            <div class="header-profile">  
-                <img src="https://i.postimg.cc/hvNGdGg4/Meta-AI-modeduzone-oldstyle-bold-circle-20261028-092014.png" alt="Profile" class="profile-img">  
-                <div class="profile-info">  
-                    <span class="profile-title">ModEduZone</span>  
-                    <span class="profile-sub">EDUCATION MUST BE FREE FOR EVERYONE</span>  
-                </div>  
-            </div>  
-            <div class="header-right-actions">
-                <div class="notification-bell" onclick="openNotifications()">
-                    <i class="fa-solid fa-bell"></i>
-                    <span class="bell-badge">6</span>
-                </div>
-            </div>  
-        </div>  
-
-        <div class="telegram-banner" onclick="openExternal('https://t.me/+cw7TRotEzcczNThl')">
-            <div class="tel-left">
-                <i class="fa-brands fa-telegram"></i>
-                <div class="tel-text">
-                    <span class="tel-title">Join Our Telegram</span>
-                    <span class="tel-sub"><span class="live-dot" style="display:inline-block;width:6px;height:6px;background:var(--neon-green);border-radius:50%;margin-right:4px;"></span> 73,911 JOINED</span>
-                </div>
-            </div>
-            <i class="fa-solid fa-arrow-right tel-arrow"></i>
-        </div>
-
-        <div class="header-search">  
-            <div class="search-box">  
-                <i class="fa-solid fa-magnifying-glass search-custom-icon"></i>  
-                <input type="text" id="searchInput" placeholder="Search platforms or exams..." onkeyup="filterApps()">  
-            </div>  
-        </div>  
-
-        <div id="main-content">  
-            <div id="tab-apps">  
-                <div class="section-title">  
-                    <div class="title-with-dot">  
-                        <span class="live-dot"></span>  
-                        <span>All Active App</span>  
-                    </div>  
-                    <span id="active-count" style="color: var(--accent-cyan); font-weight: 800;">28 Available</span>  
-                </div>  
-                <div class="app-list" id="active-apps-list">
-                    <div class="app-skeleton"><i class="fa-solid fa-spinner fa-spin"></i> Initializing Secure Servers...</div>
-                </div>  
-            </div>  
-
-            <div id="tab-upcoming" class="hidden">  
-                <div class="section-title">  
-                    <div class="title-with-dot">  
-                        <span class="live-dot"></span>  
-                        <span>All Upcoming Server</span>  
-                    </div>  
-                    <span style="color: var(--text-secondary);" id="upcoming-count">0 Coming Soon</span>  
-                </div>  
-                <div class="app-list" id="upcoming-apps-list"></div>  
-            </div>  
-
-            <div id="tab-favorites" class="hidden">  
-                <div class="section-title">  
-                    <div class="title-with-dot">  
-                        <span class="live-dot"></span>  
-                        <span>Saved Favorites</span>  
-                    </div>  
-                </div>  
-                <div class="app-list" id="favorites-apps-list"></div>  
-            </div>  
-        </div>  
-
-        <div class="bottom-nav">  
-            <div class="nav-wrapper">  
-                <div class="nav-item active" id="nav-apps" onclick="switchTab('apps', this)">  
-                    <i class="fa-solid fa-rocket"></i>  
-                    <span>Active</span>  
-                </div>  
-                <div class="nav-item" id="nav-upcoming" onclick="switchTab('upcoming', this)">  
-                    <i class="fa-solid fa-hourglass-half"></i>  
-                    <span>Upcoming</span>  
-                </div>  
-                <div class="nav-item" id="nav-favorites" onclick="switchTab('favorites', this)">  
-                    <i class="fa-solid fa-heart"></i>  
-                    <span>Favorites</span>  
-                </div>  
-                <div class="nav-item" id="nav-theme" onclick="toggleThemeDrawer()">  
-                    <i class="fa-solid fa-palette"></i>  
-                    <span>Theme</span>  
-                </div>  
-            </div>  
-        </div>  
-    </div>  
-
-    <script src="script.js"></script>
-</body>  
+</body>
 </html>
